@@ -1,6 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const axios = require('axios')
 const Transaction = require('../model/Transaction')
 
 router.get('/transactions', async function (request, response) {

@@ -6,6 +6,7 @@ import axios from 'axios';
 import Operations from './components/Operations';
 import { BrowserRouter as Router, Link, Route, Redirect  } from 'react-router-dom'
 import Breakdown from './components/Breakdown';
+import Balance from './components/Balance';
 
 
 
@@ -19,26 +20,16 @@ class App extends Component {
     }
   }
 
-   totalBalance = () => {
-    let transactions = this.setState.transactions
-    let tolatSum = 0
-    transactions.map(transaction => {
-      tolatSum += transaction.amount
-    }) 
-    this.setState({tolatBalance: tolatSum})
-  }
-
   addTransaction = async (transaction) => {
     await axios.post("http://localhost:4000/transaction", transaction)
     this.getTransactions()
-
   }
 
    getTransactions = async () => {
     let transactions = await axios.get("http://localhost:4000/transactions")
     this.setState(
       {transactions: transactions.data})
-      
+
   }
 
   deleteTransaction = async (id) => {
@@ -63,12 +54,14 @@ class App extends Component {
          </div>
 
          <Route exact path="/" render={() => 
-          <Transactions 
+         <Fragment>
+            <Balance transactions={this.state.transactions} />
+            <Transactions 
             transactions={this.state.transactions} 
             deleteTransaction={this.deleteTransaction}
-            balance={this.totalBalance}
-            tolatBalance={this.state.totalBalance}
-            />}/>
+            />
+         </Fragment>
+         }/>
 
          <Route exact path="/operations" render={() => <Operations addTransaction={this.addTransaction} />} />
          <Route exact path="/categories" render={() => <Breakdown transactions={this.state.transactions}/>} />
