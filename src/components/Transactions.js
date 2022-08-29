@@ -9,7 +9,8 @@ class Transactions extends Component {
                     <Transaction
                         transaction={transaction}
                         key={transaction._id} 
-                        deleteTransaction={this.props.deleteTransaction} />
+                        deleteTransaction={this.props.deleteTransaction} 
+                        totalBalance={this.props.totalBalance}/>
                 )
                 }
             </div>

@@ -1,9 +1,12 @@
 
 import './App.css';
-import { Component } from 'react';
+import { Component, Fragment } from 'react';
 import Transactions from './components/Transactions';
 import axios from 'axios';
 import Operations from './components/Operations';
+import { BrowserRouter as Router, Link, Route, Redirect  } from 'react-router-dom'
+import Breakdown from './components/Breakdown';
+
 
 
 class App extends Component {
@@ -12,28 +15,30 @@ class App extends Component {
     super()
     this.state = {
       transactions: [],
+      totalBalance : 0
     }
+  }
+
+   totalBalance = () => {
+    let transactions = this.setState.transactions
+    let tolatSum = 0
+    transactions.map(transaction => {
+      tolatSum += transaction.amount
+    }) 
+    this.setState({tolatBalance: tolatSum})
   }
 
   addTransaction = async (transaction) => {
     await axios.post("http://localhost:4000/transaction", transaction)
     this.getTransactions()
+
   }
-
-
-  // addTransaction =async (e)=>{
-  //   // let amount =e.target.amount.value
-  //   // let vendor =e.target.vendor.value
-  //   // let category =e.target.category.value
-  //   // console.log(category);
-  //   // console.log("Hi");
-  //   console.log(e.target);
-
-  // }
 
    getTransactions = async () => {
     let transactions = await axios.get("http://localhost:4000/transactions")
-    this.setState({transactions: transactions.data})
+    this.setState(
+      {transactions: transactions.data})
+      
   }
 
   deleteTransaction = async (id) => {
@@ -41,25 +46,37 @@ class App extends Component {
     this.getTransactions()
   }
 
-  // totalBalance = () => {
-  //   let transactions = this.setState.transactions
-  //   let tolatBalance = 0
-  //   transactions.map(transaction => {
-  //     tolatBalance += transaction.amount
-  //   }) 
-  //   return tolatBalance
-  // }
-
    componentDidMount = () => {
     this.getTransactions()
   }
 
   render() {
     return (
-      <div>
-        <Transactions transactions={this.state.transactions} deleteTransaction={this.deleteTransaction}/>
-        <Operations addTransaction={this.addTransaction} />
-      </div>
+
+      <Router>
+        <div className='app'>
+
+        <div className='nav-bar'>
+            <Link to="/">Transactions</Link>
+            <Link to="/operations">Operations</Link>
+            <Link to="/categories">Categories</Link>
+         </div>
+
+         <Route exact path="/" render={() => 
+          <Transactions 
+            transactions={this.state.transactions} 
+            deleteTransaction={this.deleteTransaction}
+            balance={this.totalBalance}
+            tolatBalance={this.state.totalBalance}
+            />}/>
+
+         <Route exact path="/operations" render={() => <Operations addTransaction={this.addTransaction} />} />
+         <Route exact path="/categories" render={() => <Breakdown transactions={this.state.transactions}/>} />
+
+        </div>
+      </Router>
+
+
 
     )
 

@@ -8,15 +8,19 @@ class Transaction extends Component {
     }
 
     render() {
-        let transaction = this.props.transaction
-
+        const transaction = this.props.transaction
+        const totalBalance = this.props.totalBalance
         return (
-            <div className='transaction-container'>
+            <div>
+                <div className='transaction-container'>
                 <div className='amount positive'> Amount: {transaction.amount}</div>
                 <div className='vendor'> Vendor: {transaction.vendor}</div>
                 <div className='category'>Category: {transaction.category}</div>
                 <button className='delete-transaction' onClick={this.deleteTransaction}>Delete</button>
             </div>
+
+            </div>
+            
         )
     }
 }
