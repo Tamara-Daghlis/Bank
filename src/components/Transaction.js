@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../style/transaction.css'
 class Transaction extends Component {
 
     
@@ -11,15 +11,13 @@ class Transaction extends Component {
         const transaction = this.props.transaction
         const totalBalance = this.props.totalBalance
         return (
-            <div>
-                <div className='transaction-container'>
+            <div className='transaction-container'>  
                 <div className='amount positive'> Amount: {transaction.amount}</div>
                 <div className='vendor'> Vendor: {transaction.vendor}</div>
                 <div className='category'>Category: {transaction.category}</div>
                 <button className='delete-transaction' onClick={this.deleteTransaction}>Delete</button>
             </div>
-
-            </div>
+            
             
         )
     }

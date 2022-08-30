@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import '../style/balance.css'
 class Balance extends Component {
 
     totalBalance = () => {
@@ -16,7 +16,7 @@ class Balance extends Component {
     render() {
         let tolatBalance = this.totalBalance()
         return (
-            <div>
+            <div className='balance'>
              Total Balance: $
             {tolatBalance > 500 ? (
           <span className="green-balance">{tolatBalance}</span>

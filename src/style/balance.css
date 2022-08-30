@@ -1,0 +1,20 @@
+.balance {
+    background-color: rgb(225, 206, 199);
+    display: flex;
+    width: 95%;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+    color: rgb(11, 11, 38);
+    box-sizing: border-box;
+    justify-content: center;
+   
+}
+.green-balance {
+    color: green;
+}
+
+.red-balance {
+    color: red;
+
+}

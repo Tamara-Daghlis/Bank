@@ -4,7 +4,7 @@ import Transaction from './Transaction';
 class Transactions extends Component {
     render() {
         return (
-            <div className='transaction-container'>
+            <div> 
                 {this.props.transactions.map(transaction =>
                     <Transaction
                         transaction={transaction}

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../style/breakdown.css'
 
 class Breakdown extends Component {
 
@@ -22,8 +23,8 @@ class Breakdown extends Component {
             <div className="categories-container">
                 {Object.keys(categories).map((category => {
                    return (
-                    <div>
-                        <span>{category}</span>
+                    <div className='breakdown'>
+                        <span>{category}:</span>
                         <span>{categories[category]}</span>
                     </div>
                    )    

@@ -1,0 +1,15 @@
+.transaction-container {
+    background-color:rgb(225, 206, 199);
+    display: flex;
+    width: 99%;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    color: rgb(11, 11, 38);
+    box-sizing: border-box;
+}
+button {
+    background-color: rgb(196, 126, 100);
+    border-radius: 5px;
+}

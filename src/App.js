@@ -4,11 +4,9 @@ import { Component, Fragment } from 'react';
 import Transactions from './components/Transactions';
 import axios from 'axios';
 import Operations from './components/Operations';
-import { BrowserRouter as Router, Link, Route, Redirect  } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Redirect, Route } from 'react-router-dom'
 import Breakdown from './components/Breakdown';
 import Balance from './components/Balance';
-
-
 
 class App extends Component {
 
@@ -29,7 +27,6 @@ class App extends Component {
     let transactions = await axios.get("http://localhost:4000/transactions")
     this.setState(
       {transactions: transactions.data})
-
   }
 
   deleteTransaction = async (id) => {
@@ -48,9 +45,9 @@ class App extends Component {
         <div className='app'>
 
         <div className='nav-bar'>
-            <Link to="/">Transactions</Link>
-            <Link to="/operations">Operations</Link>
-            <Link to="/categories">Categories</Link>
+            <Link to="/" className='link'>Transactions</Link>
+            <Link to="/operations" className='link'>Operations</Link>
+            <Link to="/categories" className='link'>Categories</Link>
          </div>
 
          <Route exact path="/" render={() => 
@@ -68,9 +65,6 @@ class App extends Component {
 
         </div>
       </Router>
-
-
-
     )
 
   }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../style/operations.css'
 
 class Operations extends Component {
 
@@ -26,15 +27,23 @@ class Operations extends Component {
 
     render() {
         return (
-            <form onSubmit={this.addTransaction}>
+            <form onSubmit={this.addTransaction} className="form">
+                <div className='amount'>
                 <label>Amount</label>
                 <input type="Number" name='amount'/>
+                </div>
+                <div className='vendor'>
                 <label>Vendor</label>
                 <input type="Text" name='category'/>
+                </div>
+                <div className='category'> 
                 <label>Category</label>
                 <input type="Text" name='vendor'/>
-                 <button onClick={this.selectButton} name="deposit">Deposit</button>
+                </div>
+                <div className='btn'>
+                <button onClick={this.selectButton} name="deposit">Deposit</button>
                  <button onClick={this.selectButton} name="withdraw">Withdraw</button>
+                </div>   
             </form>
         )
     }
